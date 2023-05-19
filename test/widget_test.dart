@@ -7,6 +7,21 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:app_golden_testing/main.dart';
 
+// Source: https://useyourloaf.com/blog/iphone-14-screen-sizes/
+const iPhoneWidth = 1170.0;
+const iPhoneHeight = 2532.0;
+const iPhonePixelRatio = 3.0;
+const iPhoneSafeAreaHeight = 47.0 * iPhonePixelRatio + 34.0 * iPhonePixelRatio;
+
+void _setScreenSize() {
+  TestWidgetsFlutterBinding binding = TestWidgetsFlutterBinding.instance;
+  binding.window.physicalSizeTestValue = const Size(
+    iPhoneWidth,
+    iPhoneHeight - iPhoneSafeAreaHeight,
+  );
+  binding.window.devicePixelRatioTestValue = iPhonePixelRatio;
+}
+
 Future<void> _loadFont(String name, String fileName) async {
   final file = File('./test/assets/$fileName');
   final fontData = await file.readAsBytes();
@@ -22,6 +37,10 @@ Future<void> _loadFont(String name, String fileName) async {
 
 void main() {
   setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+
+    _setScreenSize();
+
     // Font family names: https://stackoverflow.com/a/75079116/769006
     await _loadFont('.SF UI Text', 'SF-UI-Text-Regular.ttf');
     await _loadFont('.SF UI Display', 'SF-UI-Display-Regular.ttf');
