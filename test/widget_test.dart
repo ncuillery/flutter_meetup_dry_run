@@ -51,6 +51,7 @@ void main() {
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+    //debugDisableShadows = false;
 
     await tester.pumpWidget(const MyApp());
 
@@ -60,5 +61,6 @@ void main() {
     );
 
     debugDefaultTargetPlatformOverride = null;
+    //debugDisableShadows = true;
   });
 }
