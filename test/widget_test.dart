@@ -25,6 +25,9 @@ void main() {
     // Font family names: https://stackoverflow.com/a/75079116/769006
     await _loadFont('.SF UI Text', 'SF-UI-Text-Regular.ttf');
     await _loadFont('.SF UI Display', 'SF-UI-Display-Regular.ttf');
+
+    // See https://github.com/flutter/flutter/issues/75391#issuecomment-775375415
+    await _loadFont('MaterialIcons', 'MaterialIcons-Regular.otf');
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
